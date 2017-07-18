@@ -20,7 +20,7 @@ To ensure that command *build args* only runs once at a time, you would type:
 Where:
 
 - *12345* is a port number that should be the same for given command. Must be
-  greater than 1014 if not running as root.
+  greater than 1024 if not running as root.
 - *build args* is the command to run with arguments.
 
 This command will:

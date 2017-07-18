@@ -57,6 +57,10 @@ func Singleton(port int) (net.Listener, error) {
 }
 
 func main() {
+	if os.Args[1] == "-help" {
+		println(HELP)
+		os.Exit(0)
+	}
 	if len(os.Args) < 3 {
 		println("ERROR you must pass port and command on command line")
 		println(HELP)

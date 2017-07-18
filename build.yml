@@ -1,3 +1,17 @@
 # NeON build file (http://github.com/c4s4/neon)
 
 extends: c4s4/build/go-tool.yml
+
+targets:
+
+  test:
+    doc: Run an integration test
+    steps:
+    - script: 'failure = true'
+    - 'go run single.go 12345 sleep 1 &'
+    - try:
+      - 'go run single.go 12345 sleep 1'
+      - script: 'failure = false'
+    - if: failure
+      then:
+      - throw: 'Integration test failed'

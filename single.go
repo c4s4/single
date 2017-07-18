@@ -76,6 +76,9 @@ func main() {
 	args := os.Args[3:]
 	listener, err := Singleton(port)
 	if err != nil {
+		if listener != nil {
+			listener.Close()
+		}
 		println("ERROR another instance is running")
 		os.Exit(-3)
 	}

@@ -7,10 +7,11 @@ targets:
   test:
     doc: Run an integration test
     steps:
-    - script: 'failure = true'
     - 'go run single.go 12345 sleep 1 &'
     - try:
       - 'go run single.go 12345 sleep 1'
+      - script: 'failure = true'
+      catch:
       - script: 'failure = false'
     - if: failure
       then:

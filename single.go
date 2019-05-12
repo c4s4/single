@@ -57,6 +57,11 @@ func Singleton(port int) (net.Listener, error) {
 }
 
 func main() {
+	if len(os.Args) < 2 {
+		println("ERROR you must pass port and command on command line")
+		println(HELP)
+		os.Exit(-1)
+	}
 	if os.Args[1] == "-help" {
 		println(HELP)
 		os.Exit(0)
@@ -76,6 +81,9 @@ func main() {
 	args := os.Args[3:]
 	listener, err := Singleton(port)
 	if err != nil {
+		if listener != nil {
+			listener.Close()
+		}
 		println("ERROR another instance is running")
 		os.Exit(-3)
 	}

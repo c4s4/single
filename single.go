@@ -11,13 +11,13 @@ import (
 )
 
 const (
-	HELP = `Usage: single port command args...
+	help = `Usage: single port command args...
 port      the port to listen to (should be greater than 1024 if not root)
 command   the command to run
 args      the command arguments`
 )
 
-// Run command with given arguments and return exit value.
+// Execute runs command with given arguments and return exit value.
 func Execute(command string, args ...string) int {
 	cmd := exec.Command(command, args...)
 	cmd.Stderr = os.Stderr
@@ -40,10 +40,10 @@ func Execute(command string, args ...string) int {
 	return exit
 }
 
-// Run a TCP server on given port to ensure that a single instance is running
-// on a machine. Fails if another instance is already running.
+// Singleton runs a TCP server on given port to ensure that a single instance
+// is running on a machine. Fails if another instance is already running.
 func Singleton(port int) (net.Listener, error) {
-	listener, err := net.Listen("tcp", ":" + strconv.Itoa(port))
+	listener, err := net.Listen("tcp", ":"+strconv.Itoa(port))
 	if err != nil {
 		return nil, err
 	}
@@ -59,22 +59,22 @@ func Singleton(port int) (net.Listener, error) {
 func main() {
 	if len(os.Args) < 2 {
 		println("ERROR you must pass port and command on command line")
-		println(HELP)
+		println(help)
 		os.Exit(-1)
 	}
 	if os.Args[1] == "-help" {
-		println(HELP)
+		println(help)
 		os.Exit(0)
 	}
 	if len(os.Args) < 3 {
 		println("ERROR you must pass port and command on command line")
-		println(HELP)
+		println(help)
 		os.Exit(-1)
 	}
 	port, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		println("ERROR port number '" + os.Args[1] + "' is invalid")
-		println(HELP)
+		println(help)
 		os.Exit(-2)
 	}
 	command := os.Args[2]

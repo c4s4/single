@@ -10,13 +10,13 @@ at the same time.
 Unix users may download and install latest *single* release with command:
 
 ```bash
-$ sh -c "$(curl http://sweetohm.net/dist/single/install)"
+sh -c "$(curl http://sweetohm.net/dist/single/install)"
 ```
 
 If *curl* is not installed on you system, you might run:
 
 ```bash
-$ sh -c "$(wget -O - http://sweetohm.net/dist/single/install)"
+sh -c "$(wget -O - http://sweetohm.net/dist/single/install)"
 ```
 
 **Note:** Some directories are protected, even as *root*, on **MacOSX** (since *El Capitan* release), thus you can't install *single* in */usr/bin* for instance.
@@ -30,7 +30,7 @@ Otherwise, you can download latest binary archive at <https://github.com/c4s4/si
 To ensure that command *build args* only runs once at a time, you would type:
 
 ```bash
-$ single 12345 build args
+single 12345 build args
 ```
 
 Where:

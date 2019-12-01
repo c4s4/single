@@ -1,7 +1,9 @@
 # NeON build file (http://github.com/c4s4/neon)
 
-extends: [golang, git, changelog]
-expose:  [test, release]
+extends: golang
+default: [check, test]
+expose:  [check, test, release]
+configuration: .build.yml
 
 targets:
 

@@ -17,6 +17,9 @@ command   the command to run
 args      the command arguments`
 )
 
+// Version is the version number of generated binary
+var Version = "UNKNOWN"
+
 // Execute runs command with given arguments and return exit value.
 func Execute(command string, args ...string) int {
 	cmd := exec.Command(command, args...)
@@ -64,6 +67,10 @@ func main() {
 	}
 	if os.Args[1] == "-help" {
 		println(help)
+		os.Exit(0)
+	}
+	if os.Args[1] == "-version" {
+		println(Version)
 		os.Exit(0)
 	}
 	if len(os.Args) < 3 {

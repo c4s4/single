@@ -1,8 +1,8 @@
 # NeON build file (http://github.com/c4s4/neon)
 
 extends: golang
-default: [check, test]
-expose:  [check, test, release]
+default: [fmt, check, test]
+expose:  [fmt, check, test, release]
 configuration: .build.yml
 
 targets:

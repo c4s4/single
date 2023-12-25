@@ -52,7 +52,7 @@ func Singleton(port int) (net.Listener, error) {
 	}
 	go func() {
 		for {
-			listener.Accept()
+			_, _ = listener.Accept()
 			time.Sleep(100 * time.Millisecond)
 		}
 	}()
